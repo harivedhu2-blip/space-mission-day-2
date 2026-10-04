@@ -1,48 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ta">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guess the Cosmic Object | Cosmic Quest</title>
+<title>Guess the Cosmic Object | விண்வெளி பொருளைக் கண்டறி</title>
 <style>
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 10%,#28245a,transparent 38%),radial-gradient(ellipse at 90% 80%,#17385a,transparent 40%),#070b1c;color:#f4f7ff;font-family:Arial,Helvetica,sans-serif;display:flex;flex-direction:column}
 header{display:flex;justify-content:space-between;align-items:center;padding:20px 7%;border-bottom:1px solid #ffffff20;background:#080d20bb}.logo{font-weight:800;letter-spacing:1px;color:#70e7ff}header span{color:#b9c3df;font-size:13px}
-main{width:min(760px,92%);margin:42px auto;flex:1}.eyebrow{text-align:center;color:#70e7ff;letter-spacing:3px;font-size:12px;font-weight:bold}.title{text-align:center;font-size:clamp(32px,6vw,52px);margin:12px 0}.sub{text-align:center;color:#aebbd8;line-height:1.6;margin:0 auto 26px;max-width:570px}
+main{width:min(760px,92%);margin:42px auto;flex:1}.eyebrow{text-align:center;color:#70e7ff;letter-spacing:3px;font-size:12px;font-weight:bold}.title{text-align:center;font-size:clamp(26px,5vw,42px);margin:12px 0;line-height:1.2}.sub{text-align:center;color:#aebbd8;line-height:1.6;margin:0 auto 26px;max-width:570px;font-size:14px}
 .panel{background:#121d39ed;border:1px solid #ffffff20;border-radius:22px;padding:clamp(18px,4vw,30px);box-shadow:0 20px 70px #0005}
 .topline{display:flex;justify-content:space-between;gap:10px;align-items:center;color:#bdc9e5;font-size:14px}.pill{border:1px solid #70e7ff55;border-radius:30px;padding:8px 12px;color:#70e7ff;font-weight:bold}.bar{height:7px;background:#293657;border-radius:9px;margin:17px 0 22px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#70e7ff,#a78bfa);transition:width .3s}
-.art{height:225px;border-radius:16px;display:grid;place-items:center;overflow:hidden;position:relative;background:radial-gradient(circle at 50% 45%,#293d72,#0b122a 70%);margin-bottom:22px}
+.art{height:200px;border-radius:16px;display:grid;place-items:center;overflow:hidden;position:relative;background:radial-gradient(circle at 50% 45%,#293d72,#0b122a 70%);margin-bottom:22px}
 .art:before,.art:after{content:"✦  ·   ✧      ·     ✦       ·";position:absolute;color:#dceaff88;letter-spacing:18px;font-size:20px;top:24px;left:10px}
 .art:after{top:auto;bottom:22px;left:35%;font-size:14px}
-.object{font-size:clamp(80px,17vw,130px);filter:drop-shadow(0 0 24px #8c9dff88);z-index:1;animation:float 3s ease-in-out infinite}
+.object{font-size:clamp(70px,15vw,110px);filter:drop-shadow(0 0 24px #8c9dff88);z-index:1;animation:float 3s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-7px) scale(1.03)}}
-.clue-label{color:#70e7ff;font-size:12px;letter-spacing:2px;font-weight:bold}.question{font-size:20px;line-height:1.5;margin:9px 0 20px}
-.options{display:grid;grid-template-columns:1fr 1fr;gap:11px}.option{background:#202e50;color:#f4f7ff;border:1px solid #ffffff1c;padding:15px 13px;border-radius:12px;text-align:left;font-size:15px;cursor:pointer;transition:.15s}.option:hover:not(:disabled){border-color:#70e7ff;background:#293c65}.option:disabled{cursor:default;opacity:.85}.option.correct{border-color:#52e0a0;background:#174737}.option.wrong{border-color:#ff7e93;background:#512b3b}
-.feedback{min-height:28px;margin:16px 0 5px;color:#70e7ff;line-height:1.5}.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px}.btn{border:0;border-radius:30px;padding:13px 20px;font-weight:bold;cursor:pointer}.btn.primary{background:linear-gradient(90deg,#70e7ff,#a78bfa);color:#07101f}.btn.ghost{background:#ffffff10;color:white;border:1px solid #ffffff30}.btn:disabled{opacity:.35;cursor:not-allowed}.intro,.result{text-align:center;padding:20px 5px}.intro .big,.result .big{font-size:76px}.intro h2,.result h2{font-size:28px}.intro p,.result p{color:#b7c4e1;line-height:1.65;max-width:480px;margin:12px auto 22px}.hidden{display:none!important}.result .scorebig{font-size:48px;color:#70e7ff;font-weight:800;margin:15px}
-.name-field{margin:20px auto 25px;max-width:320px;display:flex;flex-direction:column;gap:8px;text-align:left}
-.name-field label{font-size:13px;color:#70e7ff;font-weight:bold;letter-spacing:1px}
-.name-input{width:100%;padding:12px 16px;border-radius:10px;border:1px solid #70e7ff55;background:#091126;color:#f4f7ff;font-size:16px;outline:none}
+.clue-label{color:#70e7ff;font-size:12px;letter-spacing:2px;font-weight:bold}.question{font-size:17px;line-height:1.5;margin:9px 0 20px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px}.option{background:#202e50;color:#f4f7ff;border:1px solid #ffffff1c;padding:15px 13px;border-radius:12px;text-align:left;font-size:14px;cursor:pointer;transition:.15s;line-height:1.4}.option:hover:not(:disabled){border-color:#70e7ff;background:#293c65}.option:disabled{cursor:default;opacity:.85}.option.correct{border-color:#52e0a0;background:#174737}.option.wrong{border-color:#ff7e93;background:#512b3b}
+.feedback{min-height:28px;margin:16px 0 5px;color:#70e7ff;line-height:1.5;font-size:14px}.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px}.btn{border:0;border-radius:30px;padding:13px 20px;font-weight:bold;cursor:pointer}.btn.primary{background:linear-gradient(90deg,#70e7ff,#a78bfa);color:#07101f}.btn.ghost{background:#ffffff10;color:white;border:1px solid #ffffff30}.btn:disabled{opacity:.35;cursor:not-allowed}.intro,.result{text-align:center;padding:20px 5px}.intro .big,.result .big{font-size:76px}.intro h2,.result h2{font-size:26px}.intro p,.result p{color:#b7c4e1;line-height:1.65;max-width:500px;margin:12px auto 22px;font-size:15px}.hidden{display:none!important}.result .scorebig{font-size:48px;color:#70e7ff;font-weight:800;margin:15px}
+.name-field{margin:20px auto 25px;max-width:340px;display:flex;flex-direction:column;gap:8px;text-align:left}
+.name-field label{font-size:12px;color:#70e7ff;font-weight:bold;letter-spacing:1px}
+.name-input{width:100%;padding:12px 16px;border-radius:10px;border:1px solid #70e7ff55;background:#091126;color:#f4f7ff;font-size:15px;outline:none}
 .name-input:focus{border-color:#70e7ff;box-shadow:0 0 10px #70e7ff44}
+.ta-sub{display:block;font-size:0.88em;opacity:0.9;margin-top:3px;font-weight:normal}
 footer{text-align:center;padding:22px;color:#8290b0;font-size:12px}
-@media(max-width:520px){header{padding:17px 5%}.options{grid-template-columns:1fr}.art{height:185px}.actions{align-items:stretch}.btn{padding:12px 15px}}
+@media(max-width:520px){header{padding:17px 5%}.options{grid-template-columns:1fr}.art{height:165px}.actions{align-items:stretch}.btn{padding:12px 15px}}
 </style>
 </head>
 <body>
-<header><div class="logo">✦ COSMIC QUEST</div><span>ASTRONOMY • ASTROPHYSICS</span></header>
+<header><div class="logo">✦ COSMIC QUEST</div><span>ASTRONOMY • வானியல்</span></header>
 <main>
-<div class="eyebrow">COSMIC CHALLENGE</div>
-<h1 class="title">Guess the Cosmic Object</h1>
-<p class="sub">Study the clue, trust your cosmic instincts, and identify the mystery hidden in the universe.</p>
+<div class="eyebrow">COSMIC CHALLENGE • விண்வெளி சவால்</div>
+<h1 class="title">Guess the Cosmic Object<span class="ta-sub">விண்வெளி பொருளைக் கண்டறி</span></h1>
+<p class="sub">Study the clue, trust your cosmic instincts, and identify the mystery hidden in the universe.<br><span class="ta-sub">குறிப்புகளைப் படித்து, பிரபஞ்சத்தின் ரகசியத்தைக் கண்டறியுங்கள்.</span></p>
 
 <section class="panel" id="intro">
 <div class="intro">
   <div class="big">🔭</div>
-  <h2>Ready, Space Explorer?</h2>
-  <p>Identify 10 astronomical objects. You have 10 seconds for each question. Earn one point for every correct answer!</p>
+  <h2>Ready, Space Explorer?<span class="ta-sub">தயாரா, விண்வெளி வீரரே?</span></h2>
+  <p>Identify 10 astronomical objects. You have 10 seconds for each question. Earn one point for every correct answer!<br><span class="ta-sub">10 விண்வெளிப் பொருட்களைக் கண்டறியவும். ஒவ்வொரு கேள்விக்கும் 10 வினாடிகள்!</span></p>
   <div class="name-field">
-    <label for="playerName">ENTER YOUR NAME</label>
-    <input type="text" id="playerName" class="name-input" placeholder="e.g. Astro Explorer" maxlength="25">
+    <label for="playerName">ENTER YOUR NAME / உங்கள் பெயரை உள்ளிடவும்</label>
+    <input type="text" id="playerName" class="name-input" placeholder="e.g. Astro Explorer / விண்வெளி வீரன்" maxlength="25">
   </div>
-  <button class="btn primary" onclick="startGame()">Start Challenge 🚀</button>
+  <button class="btn primary" onclick="startGame()">Start Challenge 🚀 / சவாலைத் தொடங்கு</button>
 </div>
 </section>
 
@@ -50,11 +51,11 @@ footer{text-align:center;padding:22px;color:#8290b0;font-size:12px}
 <div class="topline"><span id="progress">Question 1 / 10</span><span class="pill" id="timer">⏱ 10s</span><span class="pill" id="score">⭐ 0</span></div>
 <div class="bar"><div class="fill" id="fill"></div></div>
 <div class="art"><div class="object" id="object">🪐</div></div>
-<div class="clue-label">COSMIC CLUE</div>
+<div class="clue-label">COSMIC CLUE • விண்வெளி குறிப்பு</div>
 <div class="question" id="question"></div>
 <div class="options" id="options"></div>
 <div class="feedback" id="feedback" aria-live="polite"></div>
-<div class="actions"><button class="btn ghost" onclick="quitGame()">Exit</button><button class="btn primary" id="next" onclick="nextQuestion()" disabled>Next Object →</button></div>
+<div class="actions"><button class="btn ghost" onclick="quitGame()">Exit / வெளியேறு</button><button class="btn primary" id="next" onclick="nextQuestion()" disabled>Next Object →</button></div>
 </section>
 
 <section class="panel hidden" id="result">
@@ -64,7 +65,7 @@ footer{text-align:center;padding:22px;color:#8290b0;font-size:12px}
   <p id="playerNameDisplay" style="font-size: 20px; font-weight: bold; color: #70e7ff; margin-bottom: 5px;"></p>
   <div class="scorebig" id="finalScore">0 / 10</div>
   <p id="resultText"></p>
-  <button class="btn primary" onclick="startGame()">Play Again ↻</button>
+  <button class="btn primary" onclick="startGame()">Play Again ↻ / மீண்டும் விளையாடு</button>
 </div>
 </section>
 </main>
@@ -72,19 +73,129 @@ footer{text-align:center;padding:22px;color:#8290b0;font-size:12px}
 
 <script>
 const questions=[
-{emoji:"🪐",clue:"I am the largest planet in our Solar System. My Great Red Spot is a giant storm. Who am I?",answers:["Saturn","Jupiter","Neptune","Uranus"],correct:1,info:"Jupiter is the largest planet in our Solar System."},
-{emoji:"🌫️",clue:"I am a vast cloud of gas and dust. New stars can form within me. What am I?",answers:["Nebula","Asteroid","Comet","Pulsar"],correct:0,info:"Nebulae are interstellar clouds of gas and dust."},
-{emoji:"🕳️",clue:"My gravity is so strong that beyond my event horizon, not even light can escape. What am I?",answers:["White dwarf","Quasar","Black hole","Neutron star"],correct:2,info:"A black hole is a region of spacetime with an event horizon."},
-{emoji:"☄️",clue:"I am an icy body that can develop a glowing coma and tail when approaching the Sun. What am I?",answers:["Meteorite","Comet","Asteroid","Moon"],correct:1,info:"Comets release gas and dust as solar heating increases."},
-{emoji:"🌟",clue:"I am an extremely dense remnant of a massive star, composed mostly of neutrons. What am I?",answers:["Red giant","White dwarf","Neutron star","Exoplanet"],correct:2,info:"Neutron stars are compact remnants of certain supernova explosions."},
-{emoji:"🌌",clue:"I am a gravitationally bound system containing billions of stars, gas, dust, and dark matter. What am I?",answers:["Galaxy","Constellation","Solar system","Nebula"],correct:0,info:"Galaxies are vast systems held together by gravity."},
-{emoji:"☀️",clue:"I am the layer of the Sun visible as its bright surface, where much of its visible light escapes. What am I?",answers:["Corona","Photosphere","Core","Chromosphere"],correct:1,info:"The photosphere is the Sun's visible surface layer."},
-{emoji:"💫",clue:"I am a powerful, highly magnetized rotating neutron star that emits beams of radiation. What am I?",answers:["Pulsar","Quasar","Comet","Red dwarf"],correct:0,info:"A pulsar's beams can appear as regular pulses as it rotates."},
-{emoji:"🌍",clue:"I orbit a star beyond our Solar System. Astronomers search for me when studying possible worlds. What am I?",answers:["Dwarf planet","Exoplanet","Asteroid","Satellite"],correct:1,info:"An exoplanet is a planet orbiting a star outside our Solar System."},
-{emoji:"✨",clue:"I am a sudden, brilliant stellar explosion that can briefly outshine an entire galaxy. What am I?",answers:["Solar flare","Supernova","Aurora","Eclipse"],correct:1,info:"A supernova is an explosive stellar event."}
+{
+  emoji:"🪐",
+  clue:"I am the largest planet in our Solar System. My Great Red Spot is a giant storm. Who am I?<br><span class='ta-sub'>நான் சூரியக் குடும்பத்தின் மிகப்பெரிய கோள். என்னிடம் ஒரு பெரிய சிவப்புப் புயல் உள்ளது. நான் யார்?</span>",
+  answers:[
+    "Saturn (சனி)",
+    "Jupiter (வியாழன்)",
+    "Neptune (நெப்டியூன்)",
+    "Uranus (யுரேனஸ்)"
+  ],
+  correct:1,
+  info:"Jupiter is the largest planet in our Solar System. (வியாழன் நமது சூரியக் குடும்பத்தில் மிகப்பெரிய கோள் ஆகும்.)"
+},
+{
+  emoji:"🌫️️",
+  clue:"I am a vast cloud of gas and dust. New stars can form within me. What am I?<br><span class='ta-sub'>நான் வாயு மற்றும் தூசியால் ஆன ஒரு பெரிய மேகம். எனக்குள் புதிய நட்சத்திரங்கள் உருவாகலாம். நான் யார்?</span>",
+  answers:[
+    "Nebula (நெபுலா)",
+    "Asteroid (சிறுகோள்)",
+    "Comet (வால்நட்சத்திரம்)",
+    "Pulsar (பல்சார்)"
+  ],
+  correct:0,
+  info:"Nebulae are interstellar clouds of gas and dust. (நெபுலாக்கள் வாயு மற்றும் தூசிகளால் ஆன விண்மீன் மேகங்கள்.)"
+},
+{
+  emoji:"🕳️",
+  clue:"My gravity is so strong that beyond my event horizon, not even light can escape. What am I?<br><span class='ta-sub'>எனது ஈர்ப்பு விசை மிகவும் வலிமையானது, ஒளிகூட என்னிடமிருந்து தப்ப முடியாது. நான் யார்?</span>",
+  answers:[
+    "White dwarf (வெள்ளை குள்ளன்)",
+    "Quasar (குவேசார்)",
+    "Black hole (கருந்துளை)",
+    "Neutron star (நியூட்ரான் விண்மீன்)"
+  ],
+  correct:2,
+  info:"A black hole is a region of spacetime with an event horizon. (கருந்துளை என்பது ஒளி கூட தப்ப முடியாத ஈர்ப்பு பகுதி.)"
+},
+{
+  emoji:"☄️",
+  clue:"I am an icy body that can develop a glowing coma and tail when approaching the Sun. What am I?<br><span class='ta-sub'>நான் ஒரு பனிப் பொருள், சூரியனை அணுகும்போது ஒளிரும் வால் உருவாகும். நான் யார்?</span>",
+  answers:[
+    "Meteorite (விண்கல்)",
+    "Comet (வால்நட்சத்திரம்)",
+    "Asteroid (சிறுகோள்)",
+    "Moon (நிலவு)"
+  ],
+  correct:1,
+  info:"Comets release gas and dust as solar heating increases. (சூரிய வெப்பத்தால் வால்நட்சத்திரங்கள் வாயு மற்றும் தூசியை வெளியிடுகின்றன.)"
+},
+{
+  emoji:"🌟",
+  clue:"I am an extremely dense remnant of a massive star, composed mostly of neutrons. What am I?<br><span class='ta-sub'>நான் ஒரு பெரிய நட்சத்திரத்தின் மிக அடர்த்தியான எச்சம், பெரும்பாலும் நியூட்ரான்களால் ஆனது. நான் யார்?</span>",
+  answers:[
+    "Red giant (சிவப்பு அரக்கன்)",
+    "White dwarf (வெள்ளை குள்ளன்)",
+    "Neutron star (நியூட்ரான் விண்மீன்)",
+    "Exoplanet (புறக்கோள்)"
+  ],
+  correct:2,
+  info:"Neutron stars are compact remnants of certain supernova explosions. (சூப்பர்நோவா வெடிப்பின் அடர்த்தியான எச்சங்களே நியூட்ரான் விண்மீன்கள்.)"
+},
+{
+  emoji:"🌌",
+  clue:"I am a gravitationally bound system containing billions of stars, gas, dust, and dark matter. What am I?<br><span class='ta-sub'>நான் பில்லியன் கணக்கான நட்சத்திரங்கள், வாயு மற்றும் தூசிகளைக் கொண்ட ஈர்ப்பு அமைப்பு. நான் யார்?</span>",
+  answers:[
+    "Galaxy (விண்மீன் மண்டலம் / விண்மீன் திரள்)",
+    "Constellation (நட்சத்திரக் கூட்டம்)",
+    "Solar system (சூரியக் குடும்பம்)",
+    "Nebula (நெபுலா)"
+  ],
+  correct:0,
+  info:"Galaxies are vast systems held together by gravity. (ஈர்ப்பு விசையால் ஒன்றாகப் பிணைக்கப்பட்ட அமைப்பே விண்மீன் மண்டலம்.)"
+},
+{
+  emoji:"☀️️",
+  clue:"I am the layer of the Sun visible as its bright surface, where much of its visible light escapes. What am I?<br><span class='ta-sub'>நான் சூரியனின் ஒளிரும் மேற்பரப்பு அடுக்கு. நான் யார்?</span>",
+  answers:[
+    "Corona (கொரோனா)",
+    "Photosphere (ஒளிக்கோளம்)",
+    "Core (மையக்கரு)",
+    "Chromosphere (வண்ணக்கோளம்)"
+  ],
+  correct:1,
+  info:"The photosphere is the Sun's visible surface layer. (ஒளிக்கோளம் என்பது சூரியனின் புலப்படும் மேற்பரப்பு ஆகும்.)"
+},
+{
+  emoji:"💫",
+  clue:"I am a powerful, highly magnetized rotating neutron star that emits beams of radiation. What am I?<br><span class='ta-sub'>நான் கதிர்வீச்சு கற்றைகளை வெளியிடும் சுழலும் நியூட்ரான் விண்மீன். நான் யார்?</span>",
+  answers:[
+    "Pulsar (பல்சார்)",
+    "Quasar (குவேசார்)",
+    "Comet (வால்நட்சத்திரம்)",
+    "Red dwarf (சிவப்பு குள்ளன்)"
+  ],
+  correct:0,
+  info:"A pulsar's beams can appear as regular pulses as it rotates. (பல்சார் சுழலும் போது கதிர்வீச்சு துடிப்புகளை வெளியிடுகிறது.)"
+},
+{
+  emoji:"🌍",
+  clue:"I orbit a star beyond our Solar System. Astronomers search for me when studying possible worlds. What am I?<br><span class='ta-sub'>நான் நமது சூரியக் குடும்பத்திற்கு வெளியே உள்ள ஒரு நட்சத்திரத்தைச் சுற்றி வருகிறேன். நான் யார்?</span>",
+  answers:[
+    "Dwarf planet (குள்ளக்கோள்)",
+    "Exoplanet (புறக்கோள் / பிறகோள்)",
+    "Asteroid (சிறுகோள்)",
+    "Satellite (துணைக்கோள்)"
+  ],
+  correct:1,
+  info:"An exoplanet is a planet orbiting a star outside our Solar System. (சூரியக் குடும்பத்திற்கு வெளியே உள்ள கோள்களே புறக்கோள்கள்.)"
+},
+{
+  emoji:"✨",
+  clue:"I am a sudden, brilliant stellar explosion that can briefly outshine an entire galaxy. What am I?<br><span class='ta-sub'>நான் ஒரு பிரம்மாண்டமான நட்சத்திர வெடிப்பு, ஒரு விண்மீன் திரளையே ஒளிரச் செய்வேன். நான் யார்?</span>",
+  answers:[
+    "Solar flare (சூரியப் பிழம்பு)",
+    "Supernova (சூப்பர்நோவா / விண்மீன் வெடிப்பு)",
+    "Aurora (அரோரா)",
+    "Eclipse (கிரகணம்)"
+  ],
+  correct:1,
+  info:"A supernova is an explosive stellar event. (சூப்பர்நோவா என்பது ஒரு நட்சத்திரத்தின் பெரிய வெடிப்பு நிகழ்வு ஆகும்.)"
+}
 ];
 
-let order=[],index=0,score=0,timeLeft=10,timerId=null,locked=false,playerName="Explorer";
+let order=[],index=0,score=0,timeLeft=10,timerId=null,locked=false,playerName="Explorer / பயணி";
 const $=id=>document.getElementById(id);
 
 function startGame(){
@@ -105,14 +216,14 @@ function startGame(){
 function render(){
   locked=false;
   let q=order[index];
-  $("progress").textContent=`Question ${index+1} / ${order.length}`;
+  $("progress").textContent=`Question / கேள்வி ${index+1} / ${order.length}`;
   $("score").textContent=`⭐ ${score}`;
   $("fill").style.width=(index/order.length*100)+"%";
   $("object").textContent=q.emoji;
-  $("question").textContent=q.clue;
+  $("question").innerHTML=q.clue;
   $("feedback").textContent="";
   $("next").disabled=true;
-  $("next").textContent=index===order.length-1?"See Results ✨":"Next Object →";
+  $("next").textContent=index===order.length-1?"See Results ✨ / முடிவுகள் பார்க்க":"Next Object → / அடுத்தது";
   $("options").innerHTML="";
   q.answers.forEach((a,i)=>{
     let b=document.createElement("button");
@@ -150,11 +261,11 @@ function answer(choice){
   });
   if(choice===q.correct){
     score++;
-    $("feedback").textContent="✨ Correct! "+q.info;
+    $("feedback").textContent="✨ Correct! / சரி! "+q.info;
   }else if(choice===-1){
-    $("feedback").textContent="⏰ Time's up! Correct answer: "+q.answers[q.correct]+". "+q.info;
+    $("feedback").textContent="⏰ Time's up! / நேரம் முடிந்தது! Correct answer: "+q.answers[q.correct]+". "+q.info;
   }else{
-    $("feedback").textContent="Not quite! Correct answer: "+q.answers[q.correct]+". "+q.info;
+    $("feedback").textContent="Not quite! / தவறான விடை! Correct answer: "+q.answers[q.correct]+". "+q.info;
   }
   $("score").textContent=`⭐ ${score}`;
   $("next").disabled=false;
@@ -170,11 +281,20 @@ function nextQuestion(){
     $("play").classList.add("hidden");
     $("result").classList.remove("hidden");
     $("fill").style.width="100%";
-    $("playerNameDisplay").textContent = `Explorer: ${playerName}`;
+    $("playerNameDisplay").textContent = `Explorer / வீரர்: ${playerName}`;
     $("finalScore").textContent=score+" / "+order.length;
     $("resultIcon").textContent=score>=8?"🏆":score>=5?"🚀":"🌌";
-    $("resultTitle").textContent=score>=8?"Cosmic Champion!":score>=5?"Great Space Explorer!":"Keep Exploring!";
-    $("resultText").textContent=score>=8?`Outstanding cosmic knowledge, ${playerName}. The universe has no secrets from you!`:score>=5?`Nice work, ${playerName}! Keep learning and reach for a perfect score.`:`Every great astronomer starts with curiosity. Try again, ${playerName}, and beat your score!`;
+    
+    if(score>=8){
+      $("resultTitle").textContent="Cosmic Champion! / விண்வெளி வெற்றியாளர்!";
+      $("resultText").textContent=`Outstanding cosmic knowledge, ${playerName}! / அற்புதம் ${playerName}! உங்களுக்கு விண்வெளியைப் பற்றி சிறந்த அறிவு உள்ளது.`;
+    }else if(score>=5){
+      $("resultTitle").textContent="Great Space Explorer! / சிறந்த விண்வெளி பயணி!";
+      $("resultText").textContent=`Nice work, ${playerName}! Keep learning. / நன்று ${playerName}! தொடர்ந்து கற்றுக்கொள்ளுங்கள்.`;
+    }else{
+      $("resultTitle").textContent="Keep Exploring! / தொடர்ந்து முயற்சி செய்யுங்கள்!";
+      $("resultText").textContent=`Try again, ${playerName}, and beat your score! / மீண்டும் முயற்சி செய்து அதிக புள்ளிகளைப் பெறுங்கள் ${playerName}!`;
+    }
   }
 }
 
