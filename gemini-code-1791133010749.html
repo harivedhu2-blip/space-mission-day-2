@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guess the Cosmic Object | Cosmic Quest</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 10%,#28245a,transparent 38%),radial-gradient(ellipse at 90% 80%,#17385a,transparent 40%),#070b1c;color:#f4f7ff;font-family:Arial,Helvetica,sans-serif;display:flex;flex-direction:column}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 7%;border-bottom:1px solid #ffffff20;background:#080d20bb}.logo{font-weight:800;letter-spacing:1px;color:#70e7ff}header span{color:#b9c3df;font-size:13px}
+main{width:min(760px,92%);margin:42px auto;flex:1}.eyebrow{text-align:center;color:#70e7ff;letter-spacing:3px;font-size:12px;font-weight:bold}.title{text-align:center;font-size:clamp(32px,6vw,52px);margin:12px 0}.sub{text-align:center;color:#aebbd8;line-height:1.6;margin:0 auto 26px;max-width:570px}
+.panel{background:#121d39ed;border:1px solid #ffffff20;border-radius:22px;padding:clamp(18px,4vw,30px);box-shadow:0 20px 70px #0005}
+.topline{display:flex;justify-content:space-between;gap:10px;align-items:center;color:#bdc9e5;font-size:14px}.pill{border:1px solid #70e7ff55;border-radius:30px;padding:8px 12px;color:#70e7ff;font-weight:bold}.bar{height:7px;background:#293657;border-radius:9px;margin:17px 0 22px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#70e7ff,#a78bfa);transition:width .3s}
+.art{height:225px;border-radius:16px;display:grid;place-items:center;overflow:hidden;position:relative;background:radial-gradient(circle at 50% 45%,#293d72,#0b122a 70%);margin-bottom:22px}
+.art:before,.art:after{content:"✦  ·   ✧      ·     ✦       ·";position:absolute;color:#dceaff88;letter-spacing:18px;font-size:20px;top:24px;left:10px}
+.art:after{top:auto;bottom:22px;left:35%;font-size:14px}
+.object{font-size:clamp(80px,17vw,130px);filter:drop-shadow(0 0 24px #8c9dff88);z-index:1;animation:float 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-7px) scale(1.03)}}
+.clue-label{color:#70e7ff;font-size:12px;letter-spacing:2px;font-weight:bold}.question{font-size:20px;line-height:1.5;margin:9px 0 20px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:11px}.option{background:#202e50;color:#f4f7ff;border:1px solid #ffffff1c;padding:15px 13px;border-radius:12px;text-align:left;font-size:15px;cursor:pointer;transition:.15s}.option:hover:not(:disabled){border-color:#70e7ff;background:#293c65}.option:disabled{cursor:default;opacity:.85}.option.correct{border-color:#52e0a0;background:#174737}.option.wrong{border-color:#ff7e93;background:#512b3b}
+.feedback{min-height:28px;margin:16px 0 5px;color:#70e7ff;line-height:1.5}.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px}.btn{border:0;border-radius:30px;padding:13px 20px;font-weight:bold;cursor:pointer}.btn.primary{background:linear-gradient(90deg,#70e7ff,#a78bfa);color:#07101f}.btn.ghost{background:#ffffff10;color:white;border:1px solid #ffffff30}.btn:disabled{opacity:.35;cursor:not-allowed}.intro,.result{text-align:center;padding:20px 5px}.intro .big,.result .big{font-size:76px}.intro h2,.result h2{font-size:28px}.intro p,.result p{color:#b7c4e1;line-height:1.65;max-width:480px;margin:12px auto 22px}.hidden{display:none!important}.result .scorebig{font-size:48px;color:#70e7ff;font-weight:800;margin:15px}
+.name-field{margin:20px auto 25px;max-width:320px;display:flex;flex-direction:column;gap:8px;text-align:left}
+.name-field label{font-size:13px;color:#70e7ff;font-weight:bold;letter-spacing:1px}
+.name-input{width:100%;padding:12px 16px;border-radius:10px;border:1px solid #70e7ff55;background:#091126;color:#f4f7ff;font-size:16px;outline:none}
+.name-input:focus{border-color:#70e7ff;box-shadow:0 0 10px #70e7ff44}
+footer{text-align:center;padding:22px;color:#8290b0;font-size:12px}
+@media(max-width:520px){header{padding:17px 5%}.options{grid-template-columns:1fr}.art{height:185px}.actions{align-items:stretch}.btn{padding:12px 15px}}
+</style>
+</head>
+<body>
+<header><div class="logo">✦ COSMIC QUEST</div><span>ASTRONOMY • ASTROPHYSICS</span></header>
+<main>
+<div class="eyebrow">COSMIC CHALLENGE</div>
+<h1 class="title">Guess the Cosmic Object</h1>
+<p class="sub">Study the clue, trust your cosmic instincts, and identify the mystery hidden in the universe.</p>
+
+<section class="panel" id="intro">
+<div class="intro">
+  <div class="big">🔭</div>
+  <h2>Ready, Space Explorer?</h2>
+  <p>Identify 10 astronomical objects. You have 10 seconds for each question. Earn one point for every correct answer!</p>
+  <div class="name-field">
+    <label for="playerName">ENTER YOUR NAME</label>
+    <input type="text" id="playerName" class="name-input" placeholder="e.g. Astro Explorer" maxlength="25">
+  </div>
+  <button class="btn primary" onclick="startGame()">Start Challenge 🚀</button>
+</div>
+</section>
+
+<section class="panel hidden" id="play">
+<div class="topline"><span id="progress">Question 1 / 10</span><span class="pill" id="timer">⏱ 10s</span><span class="pill" id="score">⭐ 0</span></div>
+<div class="bar"><div class="fill" id="fill"></div></div>
+<div class="art"><div class="object" id="object">🪐</div></div>
+<div class="clue-label">COSMIC CLUE</div>
+<div class="question" id="question"></div>
+<div class="options" id="options"></div>
+<div class="feedback" id="feedback" aria-live="polite"></div>
+<div class="actions"><button class="btn ghost" onclick="quitGame()">Exit</button><button class="btn primary" id="next" onclick="nextQuestion()" disabled>Next Object →</button></div>
+</section>
+
+<section class="panel hidden" id="result">
+<div class="result">
+  <div class="big" id="resultIcon">🌟</div>
+  <h2 id="resultTitle">Mission Complete!</h2>
+  <p id="playerNameDisplay" style="font-size: 20px; font-weight: bold; color: #70e7ff; margin-bottom: 5px;"></p>
+  <div class="scorebig" id="finalScore">0 / 10</div>
+  <p id="resultText"></p>
+  <button class="btn primary" onclick="startGame()">Play Again ↻</button>
+</div>
+</section>
+</main>
+<footer>Explore beyond the ordinary · Cosmic Quest</footer>
+
+<script>
+const questions=[
+{emoji:"🪐",clue:"I am the largest planet in our Solar System. My Great Red Spot is a giant storm. Who am I?",answers:["Saturn","Jupiter","Neptune","Uranus"],correct:1,info:"Jupiter is the largest planet in our Solar System."},
+{emoji:"🌫️",clue:"I am a vast cloud of gas and dust. New stars can form within me. What am I?",answers:["Nebula","Asteroid","Comet","Pulsar"],correct:0,info:"Nebulae are interstellar clouds of gas and dust."},
+{emoji:"🕳️",clue:"My gravity is so strong that beyond my event horizon, not even light can escape. What am I?",answers:["White dwarf","Quasar","Black hole","Neutron star"],correct:2,info:"A black hole is a region of spacetime with an event horizon."},
+{emoji:"☄️",clue:"I am an icy body that can develop a glowing coma and tail when approaching the Sun. What am I?",answers:["Meteorite","Comet","Asteroid","Moon"],correct:1,info:"Comets release gas and dust as solar heating increases."},
+{emoji:"🌟",clue:"I am an extremely dense remnant of a massive star, composed mostly of neutrons. What am I?",answers:["Red giant","White dwarf","Neutron star","Exoplanet"],correct:2,info:"Neutron stars are compact remnants of certain supernova explosions."},
+{emoji:"🌌",clue:"I am a gravitationally bound system containing billions of stars, gas, dust, and dark matter. What am I?",answers:["Galaxy","Constellation","Solar system","Nebula"],correct:0,info:"Galaxies are vast systems held together by gravity."},
+{emoji:"☀️",clue:"I am the layer of the Sun visible as its bright surface, where much of its visible light escapes. What am I?",answers:["Corona","Photosphere","Core","Chromosphere"],correct:1,info:"The photosphere is the Sun's visible surface layer."},
+{emoji:"💫",clue:"I am a powerful, highly magnetized rotating neutron star that emits beams of radiation. What am I?",answers:["Pulsar","Quasar","Comet","Red dwarf"],correct:0,info:"A pulsar's beams can appear as regular pulses as it rotates."},
+{emoji:"🌍",clue:"I orbit a star beyond our Solar System. Astronomers search for me when studying possible worlds. What am I?",answers:["Dwarf planet","Exoplanet","Asteroid","Satellite"],correct:1,info:"An exoplanet is a planet orbiting a star outside our Solar System."},
+{emoji:"✨",clue:"I am a sudden, brilliant stellar explosion that can briefly outshine an entire galaxy. What am I?",answers:["Solar flare","Supernova","Aurora","Eclipse"],correct:1,info:"A supernova is an explosive stellar event."}
+];
+
+let order=[],index=0,score=0,timeLeft=10,timerId=null,locked=false,playerName="Explorer";
+const $=id=>document.getElementById(id);
+
+function startGame(){
+  clearInterval(timerId);
+  const inputName = $("playerName").value.trim();
+  if (inputName !== "") {
+    playerName = inputName;
+  }
+  order=[...questions].sort(()=>Math.random()-.5);
+  index=0;
+  score=0;
+  $("intro").classList.add("hidden");
+  $("result").classList.add("hidden");
+  $("play").classList.remove("hidden");
+  render();
+}
+
+function render(){
+  locked=false;
+  let q=order[index];
+  $("progress").textContent=`Question ${index+1} / ${order.length}`;
+  $("score").textContent=`⭐ ${score}`;
+  $("fill").style.width=(index/order.length*100)+"%";
+  $("object").textContent=q.emoji;
+  $("question").textContent=q.clue;
+  $("feedback").textContent="";
+  $("next").disabled=true;
+  $("next").textContent=index===order.length-1?"See Results ✨":"Next Object →";
+  $("options").innerHTML="";
+  q.answers.forEach((a,i)=>{
+    let b=document.createElement("button");
+    b.className="option";
+    b.textContent=String.fromCharCode(65+i)+". "+a;
+    b.onclick=()=>answer(i);
+    $("options").appendChild(b)
+  });
+  startTimer();
+}
+
+function startTimer(){
+  clearInterval(timerId);
+  timeLeft=10;
+  $("timer").textContent="⏱ "+timeLeft+"s";
+  timerId=setInterval(()=>{
+    timeLeft--;
+    $("timer").textContent="⏱ "+timeLeft+"s";
+    if(timeLeft<=0){
+      clearInterval(timerId);
+      answer(-1);
+    }
+  },1000);
+}
+
+function answer(choice){
+  if(locked)return;
+  locked=true;
+  clearInterval(timerId);
+  let q=order[index],buttons=[...$("options").children];
+  buttons.forEach((b,i)=>{
+    b.disabled=true;
+    if(i===q.correct)b.classList.add("correct");
+    else if(i===choice)b.classList.add("wrong");
+  });
+  if(choice===q.correct){
+    score++;
+    $("feedback").textContent="✨ Correct! "+q.info;
+  }else if(choice===-1){
+    $("feedback").textContent="⏰ Time's up! Correct answer: "+q.answers[q.correct]+". "+q.info;
+  }else{
+    $("feedback").textContent="Not quite! Correct answer: "+q.answers[q.correct]+". "+q.info;
+  }
+  $("score").textContent=`⭐ ${score}`;
+  $("next").disabled=false;
+}
+
+function nextQuestion(){
+  if(!locked)return;
+  if(index<order.length-1){
+    index++;
+    render();
+  }else{
+    clearInterval(timerId);
+    $("play").classList.add("hidden");
+    $("result").classList.remove("hidden");
+    $("fill").style.width="100%";
+    $("playerNameDisplay").textContent = `Explorer: ${playerName}`;
+    $("finalScore").textContent=score+" / "+order.length;
+    $("resultIcon").textContent=score>=8?"🏆":score>=5?"🚀":"🌌";
+    $("resultTitle").textContent=score>=8?"Cosmic Champion!":score>=5?"Great Space Explorer!":"Keep Exploring!";
+    $("resultText").textContent=score>=8?`Outstanding cosmic knowledge, ${playerName}. The universe has no secrets from you!`:score>=5?`Nice work, ${playerName}! Keep learning and reach for a perfect score.`:`Every great astronomer starts with curiosity. Try again, ${playerName}, and beat your score!`;
+  }
+}
+
+function quitGame(){
+  clearInterval(timerId);
+  $("play").classList.add("hidden");
+  $("intro").classList.remove("hidden");
+}
+</script>
+</body>
+</html>
